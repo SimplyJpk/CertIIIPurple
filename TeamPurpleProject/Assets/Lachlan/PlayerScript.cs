@@ -21,7 +21,7 @@ public class PlayerScript : MonoBehaviour {
 		cameraRot.x += Input.GetAxis ("Mouse Y") * -mouseSensitivity;
 		camera.localEulerAngles = cameraRot;
 		Vector3 playerRot = playerBase.localEulerAngles;
-		playerRot.y += Input.GetAxis ("Mouse X");
+		playerRot.y += Input.GetAxis ("Mouse X") * mouseSensitivity;
 		playerBase.localEulerAngles = playerRot;
 
 		Vector3 targetPos = playerBase.position;

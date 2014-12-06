@@ -7,11 +7,13 @@ public class ShootProto : MonoBehaviour {
 	public float shootDelay = 0.4f;
 	private float timer;
 	private GameObject particles;
+	private Transform camera;
 
 	void Start ()
 	{
 		Screen.showCursor = false;
 		particles = Resources.LoadAssetAtPath ("Assets/Lachlan/enemyParticles.prefab", typeof (GameObject)) as GameObject;
+		camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
 	}
 
 	void Awake ()
@@ -24,12 +26,13 @@ public class ShootProto : MonoBehaviour {
 		if (timer < 0 && Input.GetMouseButtonDown (0))
 		{
 			timer = shootDelay;
-			Ray ray = new Ray (this.transform.position, transform.forward);
+			Ray ray = new Ray (camera.position, camera.forward);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit))
 			{
 				GameObject explosion = Instantiate (particles, hit.point, Quaternion.identity) as GameObject;
 				Destroy (explosion, 3);
+				Destroy (hit.collider.gameObject);
 			}
 		}
 	}
