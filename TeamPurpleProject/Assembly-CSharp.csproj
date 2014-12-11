@@ -51,6 +51,7 @@
      <Compile Include="Assets\Lachlan\PlayerScript.cs" />
      <Compile Include="Assets\Lachlan\ShootProto.cs" />
      <Compile Include="Assets\Lachlan\testScript3.cs" />
+     <Compile Include="Assets\Nick\Target_Animate.cs" />
      <Compile Include="Assets\Nick\testScript4.cs" />
      <Compile Include="Assets\TestScript.cs" />
  <Reference Include="UnityEngine.UI">
