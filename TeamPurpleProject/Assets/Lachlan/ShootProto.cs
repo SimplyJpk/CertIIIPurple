@@ -2,18 +2,23 @@
 using System.Collections;
 
 public class ShootProto : MonoBehaviour {
-	
+
+
 	// Update is called once per frame
 	public float shootDelay = 0.4f;
 	private float timer;
 	private GameObject particles;
-	private Transform camera;
+	private Transform Camera;
+	GameObject _obj;
 
 	void Start ()
 	{
 		Screen.lockCursor = true;
 		particles = Resources.LoadAssetAtPath ("Assets/Lachlan/enemyParticles.prefab", typeof (GameObject)) as GameObject;
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
+		Camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
+
+
+
 	}
 
 	void Awake ()
@@ -26,7 +31,7 @@ public class ShootProto : MonoBehaviour {
 		if (timer < 0 && Input.GetMouseButtonDown (0))
 		{
 			timer = shootDelay;
-			Ray ray = new Ray (camera.position, camera.forward);
+			Ray ray = new Ray (Camera.position, Camera.forward);
 			RaycastHit hit;
 			if (Physics.Raycast (ray, out hit))
 			{
@@ -35,9 +40,16 @@ public class ShootProto : MonoBehaviour {
 
 				if (hit.collider.gameObject.tag == "Target")
 				{
-					// play animation
+
+					hit.collider.gameObject.rigidbody.AddForceAtPosition(Vector3.forward * 5, hit.point, ForceMode.Impulse);
+					Destroy(hit.collider.transform.parent.gameObject,1);
+
 				}
+
+
 			}
+
 		}
+
 	}
 }

@@ -5,13 +5,13 @@ public class PlayerScript : MonoBehaviour {
 
 	private float mouseSensitivity = 1.4f;
 	private Transform playerBase;
-	private Transform camera;
+	private Transform Camera;
 	
 	void Awake ()
 	{		
 		Screen.lockCursor = true;
 		playerBase = this.transform;
-		camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
+		Camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
 		playerBase.rigidbody.freezeRotation = true;
 	}
 
@@ -19,9 +19,9 @@ public class PlayerScript : MonoBehaviour {
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 			Screen.lockCursor = false;
-		Vector3 cameraRot = camera.localEulerAngles;
+		Vector3 cameraRot = Camera.localEulerAngles;
 		cameraRot.x += Input.GetAxis ("Mouse Y") * -mouseSensitivity;
-		camera.localEulerAngles = cameraRot;
+		Camera.localEulerAngles = cameraRot;
 		Vector3 playerRot = playerBase.localEulerAngles;
 		playerRot.y += Input.GetAxis ("Mouse X") * mouseSensitivity;
 		playerBase.localEulerAngles = playerRot;
