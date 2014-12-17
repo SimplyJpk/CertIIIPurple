@@ -7,6 +7,6 @@ public class CrossHairs : MonoBehaviour {
 
 	void OnGUI ()
 	{
-		GUI.DrawTexture (new Rect (Screen.width / 2 - 25, Screen.height / 2 - 25, 50, 50), crossHairs);
+			GUI.DrawTexture (new Rect (Screen.width / 2 - 25, Screen.height / 2 - 25, 50, 50), crossHairs);
 	}
 }

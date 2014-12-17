@@ -32,7 +32,6 @@ public class ShootProto : MonoBehaviour {
 			{
 				GameObject explosion = Instantiate (particles, hit.point, Quaternion.identity) as GameObject;
 				Destroy (explosion, 3);
-				Destroy (hit.collider.gameObject);
 			}
 		}
 	}
