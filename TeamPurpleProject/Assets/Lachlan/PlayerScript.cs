@@ -8,15 +8,17 @@ public class PlayerScript : MonoBehaviour {
 	private Transform camera;
 	
 	void Awake ()
-	{
+	{		
+		Screen.lockCursor = true;
 		playerBase = this.transform;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
 		playerBase.rigidbody.freezeRotation = true;
-		Screen.showCursor = false;
 	}
 
 	void Update ()
 	{
+		if (Input.GetKeyDown(KeyCode.Escape))
+			Screen.lockCursor = false;
 		Vector3 cameraRot = camera.localEulerAngles;
 		cameraRot.x += Input.GetAxis ("Mouse Y") * -mouseSensitivity;
 		camera.localEulerAngles = cameraRot;
