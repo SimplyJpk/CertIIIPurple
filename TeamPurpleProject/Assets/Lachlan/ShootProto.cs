@@ -11,7 +11,7 @@ public class ShootProto : MonoBehaviour {
 
 	void Start ()
 	{
-		Screen.showCursor = false;
+		Screen.lockCursor = true;
 		particles = Resources.LoadAssetAtPath ("Assets/Lachlan/enemyParticles.prefab", typeof (GameObject)) as GameObject;
 		camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
 	}
@@ -32,6 +32,11 @@ public class ShootProto : MonoBehaviour {
 			{
 				GameObject explosion = Instantiate (particles, hit.point, Quaternion.identity) as GameObject;
 				Destroy (explosion, 3);
+
+				if (hit.collider.gameObject.tag == "Target")
+				{
+					// play animation
+				}
 			}
 		}
 	}
