@@ -9,7 +9,7 @@ public class PlayerScript_Test : MonoBehaviour
 	private Transform Camera;
 
     // Speed, NormSpeed, MaxSpeed, Decay
-    private float[] playerSpeed = { 5f, 5f, 8f, 0.15f };
+    private float[] playerSpeed = { 5f, 5f, 8f, 2f };
 	
 	void Awake ()
 	{		
@@ -41,11 +41,11 @@ public class PlayerScript_Test : MonoBehaviour
 
     void CheckRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
-            playerSpeed[0] = playerSpeed[2];
-        else if (playerSpeed[0] > playerSpeed[1])
-            playerSpeed[0] -= playerSpeed[3];
-        else if (playerSpeed[0] < playerSpeed[1])
+        if (Input.GetKey(KeyCode.LeftShift) && playerSpeed[0] < playerSpeed[2])
+            playerSpeed[0] += playerSpeed[3] * Time.deltaTime * 2;
+        else if (playerSpeed[0] > playerSpeed[1] && !Input.GetKey(KeyCode.LeftShift))
+            playerSpeed[0] -= playerSpeed[3] * Time.deltaTime;
+        else if (playerSpeed[0] < playerSpeed[1] && !Input.GetKey(KeyCode.LeftShift))
             playerSpeed[0] = playerSpeed[1];
         Debug.Log(playerSpeed[0]);
     }
