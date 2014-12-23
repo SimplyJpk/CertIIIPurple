@@ -46,7 +46,10 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\James\testScript2.cs" />
+     <Compile Include="Assets\James\PlayerProto_Test.cs" />
+     <Compile Include="Assets\James\PlayerScript_Test.cs" />
+     <Compile Include="Assets\James\PlayerVariables.cs" />
+     <Compile Include="Assets\James\Target\target.cs" />
      <Compile Include="Assets\Lachlan\CrossHairs.cs" />
      <Compile Include="Assets\Lachlan\PlayerScript.cs" />
      <Compile Include="Assets\Lachlan\ShootProto.cs" />
@@ -54,6 +57,7 @@
      <Compile Include="Assets\Nick\Enemy.cs" />
      <Compile Include="Assets\Nick\Target_Animate.cs" />
      <Compile Include="Assets\Nick\Target_Move.cs" />
+     <Compile Include="Assets\Nick\Target_Spawn.cs" />
      <Compile Include="Assets\Nick\testScript4.cs" />
      <Compile Include="Assets\TestScript.cs" />
      <None Include="Assets\Nick\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
