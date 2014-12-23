@@ -1,7 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Nick\Target_Move.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Nick\Target_Spawn.cs">
     <Files>
+      <File FileName="Assets\Nick\Target_Spawn.cs" Line="16" Column="2" />
       <File FileName="Assets\Nick\Target_Move.cs" Line="29" Column="3" />
       <File FileName="Assets\Nick\Enemy.cs" Line="1" Column="1" />
     </Files>
