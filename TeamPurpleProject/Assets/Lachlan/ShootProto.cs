@@ -8,20 +8,23 @@ public class ShootProto : MonoBehaviour {
 	// Update is called once per frame
 	public float shootDelay = 0.4f;
 	private float timer;
-	private GameObject particles;
+	public GameObject particles;
 	private Transform Camera;
 	GameObject _obj;
-	private GameObject Bullet;
+	public GameObject Bullet;
 	private List<GameObject> bulletHoles = new List<GameObject> ();
 
 	private int bulletHoleCount = 20;
 
+	public Animator anim;
 	void Start ()
 	{
 		Screen.lockCursor = true;
-		particles = Resources.LoadAssetAtPath ("Assets/Lachlan/enemyParticles.prefab", typeof (GameObject)) as GameObject;
+		if (!particles)
+			particles = Resources.LoadAssetAtPath ("Assets/Lachlan/enemyParticles.prefab", typeof (GameObject)) as GameObject;
 		Camera = GameObject.FindGameObjectWithTag ("MainCamera").transform;
-		Bullet = Resources.LoadAssetAtPath ("Assets/Lachlan/BulletHole.prefab", typeof(GameObject)) as GameObject;
+		if (!Bullet)
+			Bullet = Resources.LoadAssetAtPath ("Assets/Lachlan/BulletHole.prefab", typeof(GameObject)) as GameObject;
 	}
 
 	void Awake ()
@@ -36,11 +39,11 @@ public class ShootProto : MonoBehaviour {
 			timer = shootDelay;
 			Ray ray = new Ray (Camera.position, Camera.forward);
 			RaycastHit hit;
-			if (Physics.Raycast (ray, out hit))
+			if (Physics.Raycast (ray, out hit) && !Input.GetKey (KeyCode.LeftShift))
 			{
 				GameObject explosion = Instantiate (particles, hit.point, Quaternion.identity) as GameObject;
 				Destroy (explosion, 3);
-
+				anim.SetTrigger ("Firing");
 				if (hit.collider.gameObject.tag == "Target")
 				{
 					hit.collider.gameObject.rigidbody.AddForceAtPosition(Vector3.forward * 5, hit.point, ForceMode.Impulse);

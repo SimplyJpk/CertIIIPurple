@@ -6,7 +6,8 @@ public class PlayerScript : MonoBehaviour {
 	private float mouseSensitivity = 1.4f;
 	private Transform playerBase;
 	private Transform Camera;
-	
+
+	public Animator anim;
 	void Awake ()
 	{		
 		Screen.lockCursor = true;
@@ -30,6 +31,11 @@ public class PlayerScript : MonoBehaviour {
 		targetPos += playerBase.forward * Input.GetAxis ("Vertical") * 5;
 		targetPos += playerBase.right * Input.GetAxis ("Horizontal") * 5;
 		transform.position = Vector3.Lerp (transform.position, targetPos, Time.deltaTime);
+
+		if (Input.GetAxis ("Vertical") > 0 && Input.GetKey (KeyCode.LeftShift))
+			anim.SetBool ("Sprinting", true);
+		else
+			anim.SetBool ("Sprinting", false);
 
 	}
 }
