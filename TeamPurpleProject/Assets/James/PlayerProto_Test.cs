@@ -37,16 +37,13 @@ public class PlayerProto_Test : MonoBehaviour
     }
     void Update()
     {
-
-        timer -= Time.deltaTime;
-        if (timer < 0 && Input.GetMouseButtonDown(0))
         if (timer > 0) timer -= Time.deltaTime;
         if (spread > spreadMin) spread -= 0.5f * Time.deltaTime; // Spread Regen/Decay (the 0.5f) should probably be a variable, More so if using more than 1 gun. ~ Jpk
         else if (spread < spreadMin) spread = spreadMin;
 
         CheckInput();
 
-        if (timer < 0 && Input.GetMouseButtonDown(0) && _reloading == false)
+        if (timer <= 0 && Input.GetMouseButtonDown(0) && _reloading == false)
         {
             timer = shootDelay;
             if (clip > 0)
@@ -62,7 +59,7 @@ public class PlayerProto_Test : MonoBehaviour
                 RaycastHit hit;
                 if (Physics.Raycast(ray, out hit))
                 {
-                    Debug.DrawLine(camera.position, hit.point, Color.red, 10f); // Debug ~ Jpk Draws lines (Bullet Path)
+                    //Debug.DrawLine(camera.position, hit.point, Color.red, 10f); // Debug ~ Jpk Draws lines (Bullet Path)
 
                     GameObject explosion = Instantiate(particles, hit.point, Quaternion.identity) as GameObject;
                     Destroy(explosion, 3);
