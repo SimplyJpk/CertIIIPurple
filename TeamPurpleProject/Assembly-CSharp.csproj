@@ -5,11 +5,11 @@
 	<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
 	<ProductVersion>10.0.20506</ProductVersion>
 	<SchemaVersion>2.0</SchemaVersion>
-	<ProjectGuid>{495396CD-41FF-39B2-B55F-52BB72321D8F}</ProjectGuid>
+	<ProjectGuid>{289A35F2-BA46-B1B3-33FA-3EF86ACCFE07}</ProjectGuid>
 	<OutputType>Library</OutputType>
 	<AppDesignerFolder>Properties</AppDesignerFolder>
 	<RootNamespace></RootNamespace>
-	<AssemblyName>Assembly-UnityScript</AssemblyName>
+	<AssemblyName>Assembly-CSharp</AssemblyName>
 	<TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
 	<FileAlignment>512</FileAlignment>
 	<BaseDirectory>Assets</BaseDirectory>
@@ -46,7 +46,20 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Nick\Standard Assets\Particles\Legacy Particles\TimedObjectDestructor.js" />
+     <Compile Include="Assets\James\PlayerProto_Test.cs" />
+     <Compile Include="Assets\James\PlayerScript_Test.cs" />
+     <Compile Include="Assets\James\PlayerVariables.cs" />
+     <Compile Include="Assets\James\Target\target.cs" />
+     <Compile Include="Assets\Lachlan\CrossHairs.cs" />
+     <Compile Include="Assets\Lachlan\PlayerScript.cs" />
+     <Compile Include="Assets\Lachlan\ShootProto.cs" />
+     <Compile Include="Assets\Lachlan\testScript3.cs" />
+     <Compile Include="Assets\Nick\Enemy.cs" />
+     <Compile Include="Assets\Nick\Target_Animate.cs" />
+     <Compile Include="Assets\Nick\Target_Move.cs" />
+     <Compile Include="Assets\Nick\Target_Spawn.cs" />
+     <Compile Include="Assets\Nick\testScript4.cs" />
+     <Compile Include="Assets\TestScript.cs" />
      <None Include="Assets\Nick\Standard Assets\Particles\Sources\Shaders\Particle Alpha Blend (Queue +100).shader" />
      <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="UnityEngine.UI">

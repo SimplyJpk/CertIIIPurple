@@ -9,7 +9,7 @@ public class PlayerProto_Test : MonoBehaviour
     public float shootDelay = 0.4f;
     private float timer;
     private GameObject particles;
-    private Transform camera;
+    private Transform Camera;
     GameObject _obj;
 
 
@@ -28,7 +28,7 @@ public class PlayerProto_Test : MonoBehaviour
     {
         Screen.lockCursor = true;
         particles = Resources.LoadAssetAtPath("Assets/Lachlan/enemyParticles.prefab", typeof(GameObject)) as GameObject;
-        camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        Camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
     }
 
     void Awake()
@@ -37,9 +37,22 @@ public class PlayerProto_Test : MonoBehaviour
     }
     void Update()
     {
+<<<<<<< .mine
+        timer -= Time.deltaTime;
+        if (timer < 0 && Input.GetMouseButtonDown(0))
+        {
+            timer = shootDelay;
+            Ray ray = new Ray(Camera.position, Camera.forward);
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                GameObject explosion = Instantiate(particles, hit.point, Quaternion.identity) as GameObject;
+                Destroy(explosion, 3);
+=======
         if (timer > 0) timer -= Time.deltaTime;
         if (spread > spreadMin) spread -= 0.5f * Time.deltaTime; // Spread Regen/Decay (the 0.5f) should probably be a variable, More so if using more than 1 gun. ~ Jpk
         else if (spread < spreadMin) spread = spreadMin;
+>>>>>>> .r50
 
        CheckInput();
 
