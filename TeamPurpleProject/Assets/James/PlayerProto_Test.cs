@@ -37,7 +37,7 @@ public class PlayerProto_Test : MonoBehaviour
     }
     void Update()
     {
-<<<<<<< .mine
+
         timer -= Time.deltaTime;
         if (timer < 0 && Input.GetMouseButtonDown(0))
         {
@@ -48,11 +48,11 @@ public class PlayerProto_Test : MonoBehaviour
             {
                 GameObject explosion = Instantiate(particles, hit.point, Quaternion.identity) as GameObject;
                 Destroy(explosion, 3);
-=======
+
         if (timer > 0) timer -= Time.deltaTime;
         if (spread > spreadMin) spread -= 0.5f * Time.deltaTime; // Spread Regen/Decay (the 0.5f) should probably be a variable, More so if using more than 1 gun. ~ Jpk
         else if (spread < spreadMin) spread = spreadMin;
->>>>>>> .r50
+
 
        CheckInput();
 
