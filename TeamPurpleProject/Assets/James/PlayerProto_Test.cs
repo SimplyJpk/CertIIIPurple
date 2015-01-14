@@ -123,15 +123,15 @@ public class PlayerProto_Test : MonoBehaviour
         }
         else if (_reloading == true && timer <= 0)
         {
-            if (ammo < 7)
+            if (ammo + clip < 7)
             {
-                clip = ammo;
+                clip += ammo;
                 ammo = 0;
             }
             else
             {
+                ammo -= clipSize - clip;
                 clip = clipSize;
-                ammo -= clipSize;
             }
             _reloading = false;
             spread = SpreadMax / 2; // Slight aim disadvantage, current vals would mean this lasts fractions of a second ~ Jpk (could always remove)
