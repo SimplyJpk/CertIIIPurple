@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class PlayerProto_Test : MonoBehaviour
 {
@@ -10,7 +11,14 @@ public class PlayerProto_Test : MonoBehaviour
     private float timer;
     private GameObject particles;
     private Transform camera;
-    GameObject _obj;
+
+    public GameObject Bullet;
+    private List<GameObject> bulletHoles = new List<GameObject>();
+
+
+    private int bulletHoleCount = 20;
+
+    public Animator anim;
 
 
     public bool _reloading = false;
@@ -27,8 +35,11 @@ public class PlayerProto_Test : MonoBehaviour
     void Start()
     {
         Screen.lockCursor = true;
-        particles = Resources.LoadAssetAtPath("Assets/Lachlan/enemyParticles.prefab", typeof(GameObject)) as GameObject;
+        if (!particles)
+            particles = Resources.LoadAssetAtPath("Assets/Lachlan/enemyParticles.prefab", typeof(GameObject)) as GameObject;
         camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+        if (!Bullet)
+            Bullet = Resources.LoadAssetAtPath("Assets/Lachlan/BulletHole.prefab", typeof(GameObject)) as GameObject;
     }
 
     void Awake()
@@ -49,15 +60,18 @@ public class PlayerProto_Test : MonoBehaviour
             if (clip > 0)
             {
                 clip--;
+                anim.SetTrigger("Firing");
+
                 Vector3 _point = camera.forward; // Makes it so math is based on Point of aim not just of 'z' ~ Jpk
                 Vector3 _sphere = Random.insideUnitCircle * spread; // Makes a sphere point? Not sure. But it does what i want c: ~ Jpk
                 _point += _sphere.y * (Random.value - 0.5f) * camera.up; // Add's a random value in the Y axis of that Sphere Point ~ Jpk
                 _point += _sphere.x * (Random.value - 0.5f) * camera.right; // Same with the X ~ Jpk
 
                 spread = SpreadMax; // Make aiming a bit harder ~ Jpk
+
                 Ray ray = new Ray(camera.position, _point);
                 RaycastHit hit;
-                if (Physics.Raycast(ray, out hit))
+                if (Physics.Raycast(ray, out hit) && !Input.GetKey(KeyCode.LeftShift))
                 {
                     //Debug.DrawLine(camera.position, hit.point, Color.red, 10f); // Debug ~ Jpk Draws lines (Bullet Path)
 
@@ -66,16 +80,37 @@ public class PlayerProto_Test : MonoBehaviour
 
                     if (hit.collider.gameObject.tag == "Target")
                     {
-                        hit.collider.gameObject.rigidbody.AddForceAtPosition(camera.transform.forward * 5, hit.point, ForceMode.Impulse);
-                        Destroy(hit.collider.transform.parent.gameObject, 1);
+                        hit.collider.gameObject.rigidbody.AddForceAtPosition(Vector3.forward * 5, hit.point, ForceMode.Impulse);
+                        if (hit.collider.transform.parent)
+                            Destroy(hit.collider.transform.parent.gameObject, 1);
+                        else
+                            Destroy(hit.collider.gameObject);
                     }
-
+                    Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
+                    GameObject bulletHole = Instantiate(Bullet, hit.point, rotation) as GameObject;
+                    bulletHoles.Add(bulletHole);
+                    bulletHole.transform.parent = hit.collider.transform;
+                    bulletHole.transform.position += (bulletHole.transform.up * 0.01f);
                 }
+                DestroyHoles();
             }
-
         }
         //Debug.Log(timer); // Debug
         Debug.Log("Spread: " + spread);
+    }
+
+    private void DestroyHoles()
+    {
+        if (bulletHoles.Count > bulletHoleCount)
+        {
+            if (bulletHoles[0])
+            {
+                Destroy(bulletHoles[0]);
+                bulletHoles.RemoveAt(0);
+            }
+        }
+        else
+            return;
     }
 
     void CheckInput()

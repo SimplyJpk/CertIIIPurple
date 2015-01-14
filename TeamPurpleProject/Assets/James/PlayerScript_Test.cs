@@ -10,7 +10,8 @@ public class PlayerScript_Test : MonoBehaviour
 
     // Speed, NormSpeed, MaxSpeed, Decay
     private float[] playerSpeed = { 5f, 5f, 8f, 2f };
-	
+
+    public Animator anim;
 	void Awake ()
 	{		
 		Screen.lockCursor = true;
@@ -48,5 +49,10 @@ public class PlayerScript_Test : MonoBehaviour
         else if (playerSpeed[0] < playerSpeed[1] && !Input.GetKey(KeyCode.LeftShift))
             playerSpeed[0] = playerSpeed[1];
         Debug.Log(playerSpeed[0]);
+
+        if (Input.GetAxis("Vertical") > 0 && Input.GetKey(KeyCode.LeftShift))
+            anim.SetBool("Sprinting", true);
+        else
+            anim.SetBool("Sprinting", false);
     }
 }
