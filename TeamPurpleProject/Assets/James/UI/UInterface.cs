@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class UInterface : MonoBehaviour {
     public Text txt_clip;
     public Text txt_ammo;
+    public Text txt_score;
 
     public Image img_clip;
     public Image img_clipRed;
-    public Image img_ammo;
 
     public GameObject player;
 
@@ -17,6 +17,7 @@ public class UInterface : MonoBehaviour {
     {
         txt_clip.text = player.GetComponent<PlayerProto_Test>().clip.ToString() + "/" + player.GetComponent<PlayerProto_Test>().clipSize.ToString();
         txt_ammo.text = player.GetComponent<PlayerProto_Test>().ammo.ToString();
+        txt_score.text = ScoreReturn(player.GetComponent<PlayerProto_Test>().score.ToString());
         if (GameObject.Find("Player").GetComponent<PlayerProto_Test>()._reloading)
         {
             img_clipRed.canvasRenderer.SetAlpha(255);
@@ -24,8 +25,16 @@ public class UInterface : MonoBehaviour {
         else
         {
             img_clipRed.canvasRenderer.SetAlpha(0);
-
         }
+    }
+
+    string ScoreReturn(string score)
+    {
+        while (score.Length < 5)
+        {
+            score = 0 + score;
+        }
+        return score;
     }
 
     void OnGUI()

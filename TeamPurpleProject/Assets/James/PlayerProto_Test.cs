@@ -20,6 +20,7 @@ public class PlayerProto_Test : MonoBehaviour
 
     public Animator anim;
 
+    public int score = 0;
 
     public bool _reloading = false;
 
@@ -85,6 +86,7 @@ public class PlayerProto_Test : MonoBehaviour
                             Destroy(hit.collider.transform.parent.gameObject, 1);
                         else
                             Destroy(hit.collider.gameObject);
+                        score += CheckHit();
                     }
                     Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                     GameObject bulletHole = Instantiate(Bullet, hit.point, rotation) as GameObject;
@@ -97,6 +99,11 @@ public class PlayerProto_Test : MonoBehaviour
         }
         //Debug.Log(timer); // Debug
         Debug.Log("Spread: " + spread);
+    }
+
+    int CheckHit()
+    {
+        return 1;
     }
 
     private void DestroyHoles()
