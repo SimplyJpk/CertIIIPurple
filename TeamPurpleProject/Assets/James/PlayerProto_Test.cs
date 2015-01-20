@@ -87,6 +87,7 @@ public class PlayerProto_Test : MonoBehaviour
                         else
                             Destroy(hit.collider.gameObject);
                         score += CheckHit();
+                        ammo++; // If they hit the Target, Reward with 1 Ammo ~ Jpk
                     }
                     Quaternion rotation = Quaternion.FromToRotation(Vector3.up, hit.normal);
                     GameObject bulletHole = Instantiate(Bullet, hit.point, rotation) as GameObject;
