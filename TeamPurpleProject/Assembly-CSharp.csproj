@@ -49,12 +49,14 @@
      <Compile Include="Assets\James\PlayerProto_Test.cs" />
      <Compile Include="Assets\James\PlayerScript_Test.cs" />
      <Compile Include="Assets\James\PlayerVariables.cs" />
+     <Compile Include="Assets\James\TargetSpawner_Manager.cs" />
      <Compile Include="Assets\James\TargetSpawner_Test.cs" />
      <Compile Include="Assets\James\UI\UInterface.cs" />
      <Compile Include="Assets\Lachlan\CrossHairs.cs" />
      <Compile Include="Assets\Lachlan\PlayerScript.cs" />
      <Compile Include="Assets\Lachlan\ShootProto.cs" />
      <Compile Include="Assets\Lachlan\testScript3.cs" />
+     <Compile Include="Assets\MenuGUI.cs" />
      <Compile Include="Assets\Nick\Enemy.cs" />
      <Compile Include="Assets\Nick\Target_Animate.cs" />
      <Compile Include="Assets\Nick\Target_Move.cs" />
