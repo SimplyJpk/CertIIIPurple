@@ -26,7 +26,10 @@ public class TargetSpawner_Test : MonoBehaviour
         if (counter < 0.5f)
         {
             counter = 0.5f;
-            transform.FindChild("target_edit(Clone)").rigidbody.AddForce(-transform.forward * 10,ForceMode.Impulse);
+            if (transform.childCount > 0)
+            {
+                transform.FindChild("target_edit(Clone)").rigidbody.AddForce(-transform.forward * 10, ForceMode.Impulse);
+            }
         }
     }
 }
