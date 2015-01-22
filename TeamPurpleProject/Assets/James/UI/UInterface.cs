@@ -11,6 +11,10 @@ public class UInterface : MonoBehaviour {
     public Text txt_Clip;
     public Text txt_Ammo;
     public Text txt_Score;
+
+    public Image img_Time;
+    public Image img2_Time;
+    public Image img3_Time;
     public Text txt_Time;
 
     public Image img_Clip;
@@ -22,7 +26,6 @@ public class UInterface : MonoBehaviour {
     public Image panel_GG;
     public Image panel2_GG;
 
-
     void Update()
     {
         txt_Clip.text = player.GetComponent<PlayerProto_Test>().clip.ToString() + "/" + player.GetComponent<PlayerProto_Test>().clipSize.ToString();
@@ -32,7 +35,7 @@ public class UInterface : MonoBehaviour {
         
         if (GameObject.Find("Player").GetComponent<PlayerProto_Test>()._reloading)
         {
-            img_ClipRed.canvasRenderer.SetAlpha(255);
+            img_ClipRed.canvasRenderer.SetAlpha(1f);
         }
         else
         {
@@ -41,25 +44,46 @@ public class UInterface : MonoBehaviour {
 
         if (player.GetComponent<PlayerProto_Test>()._GameOver == true)
         {
-            panel_GG.canvasRenderer.SetAlpha(255);
-            panel2_GG.canvasRenderer.SetAlpha(125);
-            txt_GG.text = "Congratulations You Killed " + player.GetComponent<PlayerProto_Test>().score + " Targets!";
-            txt_GG.canvasRenderer.SetAlpha(255);
-            txtReturn_GG.canvasRenderer.SetAlpha(255);
+            panel_GG.canvasRenderer.SetAlpha(1f);
+            panel2_GG.canvasRenderer.SetAlpha(0.5f);
+            txt_GG.canvasRenderer.SetAlpha(1f);
+            txtReturn_GG.canvasRenderer.SetAlpha(1f);
 
+            if (player.GetComponent<PlayerProto_Test>().TargetCount == 0)
+            {
+                txt_GG.text = "Congratulations You Killed " + player.GetComponent<PlayerProto_Test>().score + " Targets!";
+            }
+            else
+            {
+                txt_GG.text = "You Killed " + player.GetComponent<PlayerProto_Test>().score + " Out of " + player.GetComponent<PlayerProto_Test>().TargetCount;
+            }
             // Remove Crosshair
             img_Crosshair.canvasRenderer.SetAlpha(0);
         }
         else
         {
+            if (player.GetComponent<PlayerProto_Test>().TargetCount >= 1)
+            {
+                img_Time.canvasRenderer.SetAlpha(0);
+                img2_Time.canvasRenderer.SetAlpha(0);
+                img3_Time.canvasRenderer.SetAlpha(0);
+                txt_Time.canvasRenderer.SetAlpha(0);
+            }
+            else
+            {
+                img_Time.canvasRenderer.SetAlpha(0.9f);
+                img2_Time.canvasRenderer.SetAlpha(0.8f);
+                img3_Time.canvasRenderer.SetAlpha(0.5f);
+                txt_Time.canvasRenderer.SetAlpha(1f);
+            }
             panel_GG.canvasRenderer.SetAlpha(0);
             panel2_GG.canvasRenderer.SetAlpha(0);
-            txt_GG.text = "";
             txt_GG.canvasRenderer.SetAlpha(0);
             txtReturn_GG.canvasRenderer.SetAlpha(0);
+            txt_GG.text = "";
 
             // Make Crosshair Visible
-            img_Crosshair.canvasRenderer.SetAlpha(255);
+            img_Crosshair.canvasRenderer.SetAlpha(1f);
         }
     }
 

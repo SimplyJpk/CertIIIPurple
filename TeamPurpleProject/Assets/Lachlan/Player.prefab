@@ -85,7 +85,6 @@ GameObject:
   - 124: {fileID: 12400000}
   - 92: {fileID: 9200000}
   - 81: {fileID: 8100000}
-  - 114: {fileID: 11463080}
   - 114: {fileID: 11463078}
   m_Layer: 0
   m_Name: Camera
@@ -113,7 +112,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100002}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .460000008, y: 1.51999998, z: -44.6399994}
+  m_LocalPosition: {x: .460000008, y: 1.33000004, z: -44.6399994}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 400008}
@@ -386,8 +385,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d47b317cf8d6982479e292cbbf7eae59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  img_Crosshair: {fileID: 0}
+  player: {fileID: 100002}
+  img_Crosshair: {fileID: 11400038, guid: 991028bebc8063b47824b9d2e0b00447, type: 2}
   txt_Clip: {fileID: 0}
   txt_Ammo: {fileID: 0}
   txt_Score: {fileID: 0}
@@ -398,18 +397,6 @@ MonoBehaviour:
   txtReturn_GG: {fileID: 0}
   panel_GG: {fileID: 0}
   panel2_GG: {fileID: 0}
---- !u!114 &11463080
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d369ebb70a05403c92248bc5353b2bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  crossHairs: {fileID: 2800000, guid: 4ea7531bff73249dd9d74e9978728226, type: 3}
 --- !u!124 &12400000
 Behaviour:
   m_ObjectHideFlags: 1

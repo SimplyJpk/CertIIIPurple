@@ -49,6 +49,7 @@
      <Compile Include="Assets\James\PlayerProto_Test.cs" />
      <Compile Include="Assets\James\PlayerScript_Test.cs" />
      <Compile Include="Assets\James\PlayerVariables.cs" />
+     <Compile Include="Assets\James\TargetAdd.cs" />
      <Compile Include="Assets\James\TargetSpawner_Manager.cs" />
      <Compile Include="Assets\James\TargetSpawner_Test.cs" />
      <Compile Include="Assets\James\UI\UInterface.cs" />

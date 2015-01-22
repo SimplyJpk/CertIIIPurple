@@ -4,8 +4,6 @@ using System.Collections.Generic;
 
 public class PlayerProto_Test : MonoBehaviour
 {
-
-
     // Update is called once per frame
     public float shootDelay = 0.4f;
     private float timer;
@@ -35,6 +33,10 @@ public class PlayerProto_Test : MonoBehaviour
     public float _GameTimer = 60;
     public bool _GameOver = false;
 
+    public int TargetCount;
+    public List<GameObject> SpawnedTargets = new List<GameObject>();
+    public int TargetsDespawned;
+
     void Start()
     {
         Screen.lockCursor = true;
@@ -53,8 +55,30 @@ public class PlayerProto_Test : MonoBehaviour
     {
         if (_GameOver == false)
         {
-            _GameTimer -= Time.deltaTime;
-            if (_GameTimer <= 0) _GameOver = true;
+            if (TargetCount == 0)
+            {
+                _GameTimer -= Time.deltaTime;
+                if (_GameTimer <= 0) _GameOver = true;
+            }
+            else
+            {
+                if (TargetsDespawned >= TargetCount) _GameOver = true;
+                for (int i = SpawnedTargets.Count-1; i >= 0; i--)
+                {
+                    try
+                    {
+                        if (SpawnedTargets[i].tag != "Target")
+                        { }
+                    } 
+                    catch
+                    {
+                        SpawnedTargets.RemoveAt(i);
+                        TargetsDespawned++;
+                        Debug.Log(TargetsDespawned);
+                    }
+                }
+            }
+
             if (timer > 0) timer -= Time.deltaTime;
             if (spread > spreadMin) spread -= 0.5f * Time.deltaTime; // Spread Regen/Decay (the 0.5f) should probably be a variable, More so if using more than 1 gun. ~ Jpk
             else if (spread < spreadMin) spread = spreadMin;
