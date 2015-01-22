@@ -136,7 +136,8 @@ public class PlayerProto_Test : MonoBehaviour
             _GameTimer = 0;
             if (Input.GetMouseButtonDown(1))
             {
-            //    Application.LoadLevel(0);
+                Application.LoadLevel(0);
+				Screen.showCursor = true;
             }
         }
     }
